@@ -1,5 +1,5 @@
 const { PrismaClient } = require('@prisma/client');
-const bcrypt = require('bcryptjs');
+const bcryptjs = require('bcryptjs');
 
 const prisma = new PrismaClient();
 
@@ -32,7 +32,7 @@ async function main() {
 
   const adminEmail = 'admin@gmail.com';
   const rawPassword = 'admin';
-  const password = await bcrypt.hash(rawPassword, 10);
+  const password = await bcryptjs.hash(rawPassword, 10);
 
   const branch1 = await prisma.branch.findFirst({
     where: { name: 'Branch1' },

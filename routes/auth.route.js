@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const passport = require('passport');
-const bcrypt = require('bcryptjs');
+const bcryptjs = require('bcryptjs');
 const connectEnsure = require('connect-ensure-login');
 
 
@@ -51,7 +51,7 @@ router.post(
       return res.redirect('/auth/register');
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcryptjs.hash(password, 10);
 
     const branch = await prisma.branch.findUnique({ where: { id: 1 } });
 

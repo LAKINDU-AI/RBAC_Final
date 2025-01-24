@@ -4,10 +4,10 @@ const LocalStrategy = require('passport-local').Strategy;
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-// Function to compare passwords using bcrypt
+// Function to compare passwords using bcryptjs
 async function isValidPassword(password, hashedPassword) {
     try {
-      const isMatch = await bcrypt.compare(password, hashedPassword);
+      const isMatch = await bcryptjs.compare(password, hashedPassword);
       console.log(`Comparing passwords: plain=${password}, hashed=${hashedPassword}, isMatch=${isMatch}`);
       return isMatch;
     } catch (error) {
