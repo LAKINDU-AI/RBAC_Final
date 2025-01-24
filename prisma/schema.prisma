@@ -1,0 +1,59 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int      @id @default(autoincrement())
+  email    String   @unique
+  password String
+  role     Role     @default(WAITER)
+  branchId Int      
+  Branch   Branch   @relation(fields: [branchId], references: [id])
+  orders   Order[]
+}
+
+model Branch {
+  id       Int      @id @default(autoincrement())
+  name     String
+  users    User[]
+  orders   Order[]
+}
+
+model Order {
+  id         Int      @id @default(autoincrement())
+  orderDate  DateTime @default(now())
+  menuItemId Int
+  menuItem   Menu     @relation(fields: [menuItemId], references: [id])
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id])
+  branchId   Int
+  branch     Branch   @relation(fields: [branchId], references: [id])
+}
+
+model Menu {
+  id        Int       @id @default(autoincrement())
+  item      menuItem      
+  price     Float
+  orders    Order[]
+}
+
+enum menuItem {
+  CHICKEN_STEAK
+  FISH_STEAK
+  BEEF_STEAK
+  LAMB_STEAK
+}
+
+enum Role {
+  ADMIN
+  WAITER
+  BRANCH_MANAGER
+  HQM
+}
+

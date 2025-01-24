@@ -1,0 +1,36 @@
+include ./layouts/header
+
+h1.register Manage Users
+
+div.table-container
+  table.table
+    thead
+      tr
+        th ID
+        th Email
+        th Branch
+        th Role
+    tbody
+      each user in users
+        tr
+          td= user.id
+          td= user.email
+          td 
+            form.manage-branch-form(action="/admin/update-branch", method="post")
+              input(type="hidden", name="id", value=user.id)
+              select(name="branch", id=`branch-${user.id}`)
+                option(value="1", selected=user.branchId === 1) Branch 1
+                option(value="2", selected=user.branchId === 2) Branch 2
+                option(value="3", selected=user.branchId === 3) Branch 3
+              input(type="submit", value="update")
+          td
+            form.manage-user-form(action="/admin/update-role", method="post")
+              input(type="hidden", name="id", value=user.id)
+              select(name="role", id="role")
+                option(value="ADMIN", selected=user.role === 'ADMIN') Admin
+                option(value="WAITER", selected=user.role === 'WAITER') Waiter
+                option(value="BRANCH_MANAGER", selected=user.role === 'BRANCH_MANAGER') Branch Manager
+                option(value="HQM", selected=user.role === 'HQM') HQM
+              input(type="submit", value="update")
+
+include ./layouts/footer

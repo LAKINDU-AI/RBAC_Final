@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title Error
+    link(rel='stylesheet', href='/style.css')
+  body
+    include layouts/header
+
+    h1 Something went wrong...
+    br
+    h3 #{error.status} | #{error.message}
+    br
+    a(href='/') ← Back to home
+
+    include layouts/footer

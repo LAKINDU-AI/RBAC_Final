@@ -1,0 +1,24 @@
+include ./layouts/header
+
+h1.register Register
+if error
+  p.error= error
+form.reg-form(action="/auth/register", method="post")
+  div
+    label(for="email") Email/Username
+    input(type="text", name="email", id="email", value=locals.email ? locals.email : '')
+  div
+    label(for="password") Password
+    input(type="password", name="password", id="password")
+  div
+    label(for="password2") Confirm password
+    input(type="password", name="password2", id="password2")
+  div
+    input(type="submit", value="Register")
+div.alacc
+  p
+    | Already have an account? 
+    span
+      a(href="/auth/login") Login
+br
+include ./layouts/footer

@@ -1,0 +1,21 @@
+include ./layouts/header
+
+h1.register Login
+form.reg-form(action="/auth/login", method="post")
+  div
+    label(for="email") Email/Username
+    input(type="email", name="email", id="email")
+  div
+    label(for="password") Password
+    input(type="password", name="password", id="password")
+  div
+    input(type="submit", value="Login")
+
+div.alacc
+  p
+    | Don't have an account? 
+    span
+      a(href="/auth/register") Register
+br
+
+include ./layouts/footer

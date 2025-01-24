@@ -1,0 +1,27 @@
+include ./layouts/header
+
+h1.register Profile
+
+if person
+  .profile
+    table.profile-table
+      tr
+        td.attribute User ID
+        td #{person.id}
+      tr
+        td.attribute Email
+        td #{person.email}
+      tr
+        td.attribute Role
+        td #{person.role}
+      tr
+        td.attribute Branch
+        td #{person.branchId}
+else
+  .profile
+    div
+      p.title Error
+      p.subtitle User data not available.
+
+include ./layouts/footer
+

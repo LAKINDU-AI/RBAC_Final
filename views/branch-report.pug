@@ -1,0 +1,33 @@
+include ./layouts/header
+
+block content
+  h1.register Branch Manager Report
+
+  form.filter-form(method="get" action="/manager/dashboard")
+    div.form-group
+      label(for="from") From:
+      input.form-control(type="date" name="from" required)
+    div.form-group
+      label(for="to") To:
+      input.form-control(type="date" name="to" required)
+    div.form-group
+      button.btn(type="submit") Filter
+
+  table.tablereport
+    thead
+      tr
+        th Order ID
+        th Order Date
+        th Menu Item
+        th Waiter
+        th Branch
+    tbody
+      each order in orders
+        tr
+          td #{order.id}
+          td #{new Date(order.orderDate).toLocaleString()}
+          td #{order.menuItem.item}
+          td #{order.user.email}
+          td #{order.branch.name}
+
+include ./layouts/footer

@@ -1,0 +1,6 @@
+if locals.messages
+  .messages
+    ul.messages
+      each key in Object.keys(messages)
+        each message in messages[key]
+          li(class=key)= message

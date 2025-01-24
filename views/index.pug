@@ -1,0 +1,13 @@
+include ./layouts/header.pug
+
+h1.title Today Menu
+
+ul.menu
+  each item in menuItems
+    li
+      img(src=`/images/${item.item.toLowerCase()}.jpg`, alt=item.item)
+      h2 #{item.item}
+      p Price: €#{item.price}
+
+include ./layouts/footer.pug
+

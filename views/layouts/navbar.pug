@@ -1,0 +1,18 @@
+div.navbar 
+    h2 Steakz restaurant
+    ul.links
+        li: a(href='/') Home
+        if user
+            li: a(href='/user/profile') Profile
+            if user.role === 'ADMIN'
+                li: a(href='/admin/users') Manage Users
+            if user.role === 'WAITER'
+                li: a(href='/waiter/order') Order 
+            if user.role === 'BRANCH_MANAGER'
+                li: a(href='/manager/dashboard') Branch report
+            if user.role === 'HQM'
+                li: a(href='/manager/hqm-report') See restaurant report
+            li: a(href='/auth/logout') Logout
+        else
+            li: a(href='/auth/register') Register
+            li: a(href='/auth/login') Login
